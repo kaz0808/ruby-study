@@ -28,8 +28,8 @@
 
 <h2>メモ一覧</h2>
 <%= link_to '全てのカテゴリー', posts_path, class: 'btn btn-secondary' %>
-<%= link_to 'カテゴリー1', posts_path(category: '仕事関連'), class: 'btn btn-secondary' %>
-<%= link_to 'カテゴリー2', posts_path(category: '予定関連'), class: 'btn btn-secondary' %>
+<%= link_to '仕事関連のみ表示', posts_path(category: '仕事関連'), class: 'btn btn-secondary' %>
+<%= link_to '予定関連のみ表示', posts_path(category: '予定関連'), class: 'btn btn-secondary' %>
 <% @posts.each do |post| %>
   <div class="contentbox">
     <h3>カテゴリー：<%= post.category %></h3>
