@@ -1,7 +1,11 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.all.order(created_at: :desc)  # 投稿を新しい順に取得
     @post = Post.new                            # 新規投稿フォーム用のインスタンス
+    if params[:category].present?
+      @posts = Post.where(category: params[:category]).order(created_at: :desc)
+    else
+      @posts = Post.all.order(created_at: :desc)
+    end
   end
 
   def create
@@ -39,6 +43,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :content)  # idは削除
+    params.require(:post).permit(:category, :title, :content)  # idは削除
   end
 end
