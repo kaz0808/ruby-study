@@ -6,15 +6,26 @@ const application = Application.start()
 application.debug = false
 window.Stimulus   = application
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('turbo:load', () => {
     const form = document.getElementById('new-post-form');
+    const submitButton = document.getElementById('add-memo-button');
   
-    if (form) {
-      form.addEventListener('keydown', function(event) {
-        // Enterキーが押されたときに送信を防ぐ
+    if (form && submitButton) {
+      submitButton.addEventListener('click', () => {
+        form.requestSubmit(); // HTML5のrequestSubmitを使用
+      });
+  
+      form.addEventListener('keydown', (event) => {
         if (event.key === 'Enter') {
-          event.preventDefault();
-          return false;
+          const isCtrlOrCmdPressed = event.ctrlKey || event.metaKey;
+  
+          if (isCtrlOrCmdPressed) {
+            // Control+Enter または Command+Enter が押された場合、フォームを送信
+            form.requestSubmit();
+          } else {
+            // 単独のEnterキー押下の場合、送信を防止
+            event.preventDefault();
+          }
         }
       });
     }
