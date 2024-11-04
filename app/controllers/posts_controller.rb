@@ -43,6 +43,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:category, :title, :content)  # idは削除
+    params.require(:post).permit(:category, :priority, :title, :content)  # idは削除
   end
 end
