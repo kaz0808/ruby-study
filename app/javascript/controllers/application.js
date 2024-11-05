@@ -16,6 +16,7 @@ document.addEventListener('turbo:load', () => {
       });
   
       form.addEventListener('keydown', (event) => {
+        console.log(event.key, "が押されました");
         if (event.key === 'Enter') {
           const isCtrlOrCmdPressed = event.ctrlKey || event.metaKey;
           const isTextArea = event.target.tagName.toLowerCase() === 'textarea';
